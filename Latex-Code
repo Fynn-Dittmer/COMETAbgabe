@@ -1,0 +1,191 @@
+\documentclass{article}
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage{parskip} % für Absätze\usepackage{amsfonts}  % Für \mathbb
+\usepackage{amsmath}   % Für mathematische Operatoren
+
+\usepackage[utf8]{inputenc} 
+\usepackage[ngerman]{babel} 
+\usepackage[T1]{fontenc}   
+
+\usepackage{url} % benötigt für URL in Literaturverzeichnis
+
+\title{Abgabe 1 für Computergestützte Methoden}
+\author{Gruppe 95, Fynn Dittmer}
+\date{01.12.2024}
+
+\begin{document}
+
+% Title, Autor und Datum erzeugen
+\maketitle
+
+
+% Inhaltsverzeichnis
+\tableofcontents
+
+% starte mit dem Inhalt auf der nächsten Seite
+\newpage
+
+\section {Der zentrale Grenzwertsatz}
+
+Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch
+verteilter $(i.i.d.)$ Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV annähernd
+normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nutzlich, da die Normalverteilung gut untersucht und mathematisch 
+handhabbar ist.
+
+\subsection{Aussage}
+
+% Textformatierung
+Sei $X1, X2, . . . , Xn$ eine Folge von $i.i.d.$ ZV mit dem Erwartungswert $\mu$ = $\mathbb{E}[Xi]$ und der Varianz $\sigma^2$ = Var$(Xi)$, wobei 0 < $\sigma^2$ < $\infty$ gelte. 
+Dann konvergiert die standardisierte Summe $Z_n$ dieser ZV fur  $n$ → $\infty$ in Verteilung gegen eine Standardnormalverteilung:\footnote{Der zentrale Grenzwertsatz hat verschiedene Verallgemeinerungen. Eine davon ist der \textbf{Lindeberg-Feller-Zentrale-Grenzwertsatz} [\cite{Klenke}, Seite 328], der schwächere Bedingungen an
+die Unabhängigkeit und die identische Verteilung der ZV stellt.}
+
+
+\begin{equation}
+Z_n = \frac{\sum_{i=1}^n X_i - n\mu}{\sigma \sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1).
+\label{1}
+\end{equation}
+
+
+Das bedeutet, dass für große $n$ die Summe der ZV nährungsweise normalverteilt ist mit Erwartungswert $n\mu$ und der Varianz $n\sigma^2$:
+\begin{equation}
+\sum_{i=1}^n X_i \sim \mathcal{N}(n\mu, n\sigma^2).
+\label{2}
+\end{equation}
+
+
+
+\subsection{Erklärung der Standardisierung}
+Um die Summe der ZV in eine Standardnormalverteilung zu transformieren, subtrahiert man den Erwartungswert $n\mu$ und teilt durch die Standardabweichung $\sigma\sqrt(n)$.
+Dies führt zu der obigen Formel \eqref{1}. Die Darstellung \eqref{2} ist für $n$ → $\infty$ nicht wohldefiniert.
+
+\subsection{Anwendungen}
+Der ZGS wird in vielen Bereichen der Statistik und der Wahrscheinlichkeitstheorie angewendet. Typische Beispiele sind:
+\begin{itemize}
+    \item Die Berechnung von Konfidenzintervallen
+    \item Die Approximation von Wahrscheinlichkeiten für Summen oder Mittelwerte
+\end{itemize}
+
+\newpage
+\section{Bearbeitung zu Aufgabe 1}
+
+\subsection{Thema Datenverarbeitung}
+\textbf{Untersuchen Sie den für Ihre Gruppe relevanten Teil der Daten und beschreiben Sie ihre Erkenntnisse}\\
+Bei der Untersuchung der Daten fällt einem auf,dass es sich um eine csv-Datei handelt, also um Kommaseparierte Daten.
+Außerdem ist auffällig, dass jede Gruppe eine eigene Station zugewiesen bekommen hat.
+Bei dieser Station werden an allen Tagen im Jahre 2023 jeweils einmal täglich verschiedene Daten gemessen welche in der Tabelle enthalten sind.\\
+Die verschiedenen Daten welche ermittelt wurden sind Datum, Tag des Jahres, Tag der Woche, Monat des Jahres, Niederschlag, Windgeschwindigkeit, Mindesttemperatur, Durchschnittstemperatur, Maximaltemperatur und die Anzahl der geliehenen Fahrräder.
+Ebenfalls fällt auf, dass manche Daten fehlen und stattdessen ein NA in der Tabelle steht.
+
+\textbf{Berechnen Sie für den Ihrer Gruppe zugeordneten Datenteil die höchset mittlere Temperatur in Grad Celsius} \\
+Für die Berechnung der höchsten mittleren Temperatur der Daten der Gruppe 95 sorgt man zuerst dafür, dass die Tabelle übersichtlicher ist.
+Dafür teilt man jedem Datenpunkt seine eigene Spalte zu indem man auf \\ Daten=>Text in Spalten klickt. \\ Zusätzlich wenden wir einen Filter an welcher die Daten aller anderen Gruppen entfernt.
+Nun haben wir in den Zeilen 34260 bis 34624 die Daten unserer Gruppe und in der J Spalte die Daten zur mittleren Temperatur.
+Mit dem Befehl 
+\begin{verbatim}
+=MAX(J34260:J34624)
+\end{verbatim}
+
+können wir nun den gesuchten Wert ermitteln.
+Bei dem ermittelten Wert handelt es sich um 83, dabei handelt es sich jedoch wahrscheinlich um Fahrenheit, sodass der Wert umgewandelt werden muss.
+Die höchste mittlere Temperatur ist somit bei 28,3 Grad Celsius.
+
+\subsection{Thema Datenhaltung}
+\textbf{2. Entwerfen Sie im Abgabe-Dokument ein Datenbank-Schema} \\
+Um ein Datenbank-Schema zu entwerfen, müssen wir sicherstellen, dass die erste und zweite Normalform erfüllt sind.
+Für die erste Normalform müssen alle Attribute atomar sein also alle nichtatomaren Attribute entfernt werden.
+Für die zweite Normalform müssen alle Nichtschlüssel-Attribute alleine vom Primärschlüssel abhängen.
+Unser Datenbank-Schema könnte dann wiefolgt aussehen:
+\begin{itemize}
+
+\item Station(\underline{station}, \underline{date})
+\item Buchungen(\underline{date},count)
+\item Wetter(\underline{date}, precipitation, windspeed)
+\item Temperatur(\underline{date}, min\_temperature, average\_temperature, max\_temperature) 
+\end{itemize}
+
+
+\textbf{3. Definieren sie mit dem DDL-Teil von SQL die Tabellen.} \\
+Als nächstes müssen wir die Tabellen in SQL definieren.
+Dafür nutzen wir folgende Befehle:
+
+\begin{verbatim}
+    
+
+create table "$Station"(
+"station" TEXT,
+"date" TEXT );
+
+create table "Buchungen"(
+"date" TEXT, "count" INTEGER );
+
+
+create table "Wetter" (
+    "date" TEXT, "precipitation" NUMERIC, "windspeed" NUMERIC );
+
+
+create table "Temperatur" (
+	"date"	TEXT,
+	"min\_temperature"	INTEGER,
+	"average\_temperature"	INTEGER,
+	"max\_temperature"	INTEGER,
+	PRIMARY KEY("date")
+);
+
+    
+\end{verbatim}
+
+
+\textbf{4. Bereiten Sie Datensatz so vor, dass die Datensätze in
+die passenden Tabellen importiert werden können.} \\
+Um den Datensatz so vorzubereiten, dass die Datensätze in die passenden Tabellen importiert werden können, muss dafür gesorgt werden, dass die Daten in verschiedene Excel-Tabellen gepackt werden damit man diese dann einzeln in die SQL-Tabellen importiert werden können und auch nur die richtigen Daten importiert werden.
+Wir erstellen also je eine Excel-Seite für die verschiedenen Tabellen und entfernen alle Daten welche nicht zur jeweiligen Tabelle gehören.
+
+Dafür löschen wir zuerst alle Daten welche nicht zu unserer Gruppe gehören indem wir die Daten der Gruppe 95 markieren, in eine neue Tabelle kopieren und die alte Tabelle löschen.
+Dann kopieren wir die Daten für die jeweilige Tabelle und fügen sie in eine neue Tabelle ein.
+
+\newpage
+Wenn wir die Daten in sql importieren, müssen wir zuerst den Separator umstellen. \\
+Wenn wir uns die Datei anschauen, sehen wir, dass die Daten mit einem ; separiert werden und mit dem Befehl 
+\begin{verbatim}
+.separator ;  
+\end{verbatim}
+stellen wir den Separator ein.
+Ebenfalls muss dafür gesorgt werden, dass die erste Spalte als Überschrift erkannt wird indem 
+\begin{verbatim}
+.headers on    
+\end{verbatim}
+eingegeben wird.
+Dann importieren wir die Daten indem wir den Befehl 
+\begin{verbatim}
+.import FILE TABLE 
+\end{verbatim}
+ 
+nutzen, FILE muss dabei der Dateipfad der csv-Datei und TABLE der Name der Tabelle sein. Den Dateipfad kann man entweder kopieren oder man zieht die Datei in sql rein.
+Wenn wir die Daten importiert haben, können wir alle NA-Werte entfernen.
+
+\textbf{Formulieren Sie eine Abfrage, um aus den Ihrer Gruppe zugeordneten Daten die höchste mittlere Temperatur herauszufiltern} \\
+Zum Schluss können wir dann mit dem Befehl 
+\begin{verbatim}
+selsect max(average_temperature) FROM Temperatur
+\end{verbatim}
+die maximale mittlere Temperatur unserer Daten ermitteln.
+Die maximale Temperatur sind in diesem Fall 83Fahrenheit bzw. 28,3Grad Celsius. \\ \\
+Es ist auch möglich die maximale Temperatur direkt in Celsius zu erhalten indem man folgenden Befehl eingibt und 28.33333333 als Antwort erhält: 
+\begin{verbatim}
+select max(average_temperature - 32) * 5.0 / 9.0 FROM Temperatur
+    
+\end{verbatim}
+
+\newpage
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+
+
+
+\end{document}
