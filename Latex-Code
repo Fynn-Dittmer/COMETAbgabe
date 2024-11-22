@@ -80,9 +80,13 @@ Bei dieser Station werden an allen Tagen im Jahre 2023 jeweils einmal täglich v
 Die verschiedenen Daten welche ermittelt wurden sind Datum, Tag des Jahres, Tag der Woche, Monat des Jahres, Niederschlag, Windgeschwindigkeit, Mindesttemperatur, Durchschnittstemperatur, Maximaltemperatur und die Anzahl der geliehenen Fahrräder.
 Ebenfalls fällt auf, dass manche Daten fehlen und stattdessen ein NA in der Tabelle steht.
 
+\textbf{Importieren Sie den Datensatz in eine Tabellenkalulation}\\
+Dafür kann man nachdem die Datei heruntergeladen wurde auf die Datei klicken und sie wird automatisch in der Tabellenkalkulation Excel geladen.
+
 \textbf{Berechnen Sie für den Ihrer Gruppe zugeordneten Datenteil die höchset mittlere Temperatur in Grad Celsius} \\
 Für die Berechnung der höchsten mittleren Temperatur der Daten der Gruppe 95 sorgt man zuerst dafür, dass die Tabelle übersichtlicher ist.
 Dafür teilt man jedem Datenpunkt seine eigene Spalte zu indem man auf \\ Daten=>Text in Spalten klickt. \\ Zusätzlich wenden wir einen Filter an welcher die Daten aller anderen Gruppen entfernt.
+Dafür klicken wir auf group, klicken dann auf Filter um einen Filter zu erzeugen, blenden alle Gruppen aus und dann Gruppe 95 wieder ein.
 Nun haben wir in den Zeilen 34260 bis 34624 die Daten unserer Gruppe und in der J Spalte die Daten zur mittleren Temperatur.
 Mit dem Befehl 
 \begin{verbatim}
@@ -93,11 +97,13 @@ können wir nun den gesuchten Wert ermitteln.
 Bei dem ermittelten Wert handelt es sich um 83, dabei handelt es sich jedoch wahrscheinlich um Fahrenheit, sodass der Wert umgewandelt werden muss.
 Die höchste mittlere Temperatur ist somit bei 28,3 Grad Celsius.
 
+\newpage
+
 \subsection{Thema Datenhaltung}
 \textbf{2. Entwerfen Sie im Abgabe-Dokument ein Datenbank-Schema} \\
 Um ein Datenbank-Schema zu entwerfen, müssen wir sicherstellen, dass die erste und zweite Normalform erfüllt sind.
 Für die erste Normalform müssen alle Attribute atomar sein also alle nichtatomaren Attribute entfernt werden.
-Für die zweite Normalform müssen alle Nichtschlüssel-Attribute alleine vom Primärschlüssel abhängen.
+Für die zweite Normalform müssen alle Nichtschlüssel-Attribute alleine vom Primärschlüssel abhängen und die Daten müssen in mehrer Tabellen aufgetrennt werden.
 Unser Datenbank-Schema könnte dann wiefolgt aussehen:
 \begin{itemize}
 
@@ -105,6 +111,7 @@ Unser Datenbank-Schema könnte dann wiefolgt aussehen:
 \item Buchungen(\underline{date},count)
 \item Wetter(\underline{date}, precipitation, windspeed)
 \item Temperatur(\underline{date}, min\_temperature, average\_temperature, max\_temperature) 
+\item Datum(\underline{date}, day\_of\_year, day\_of\_week, month\_of\_year ) 
 \end{itemize}
 
 
@@ -116,44 +123,71 @@ Dafür nutzen wir folgende Befehle:
     
 
 create table "$Station"(
-"station" TEXT,
-"date" TEXT );
+    "station" TEXT,
+    "date" TEXT 
+    PRIMARY KEY("date"));
 
 create table "Buchungen"(
-"date" TEXT, "count" INTEGER );
+    "date" TEXT, 
+    "count" INTEGER 
+    PRIMARY KEY("date"));
 
 
 create table "Wetter" (
-    "date" TEXT, "precipitation" NUMERIC, "windspeed" NUMERIC );
+    "date" TEXT, 
+    "precipitation" NUMERIC, 
+    "windspeed" NUMERIC
+    PRIMARY KEY("date"));
 
 
 create table "Temperatur" (
 	"date"	TEXT,
-	"min\_temperature"	INTEGER,
-	"average\_temperature"	INTEGER,
-	"max\_temperature"	INTEGER,
-	PRIMARY KEY("date")
-);
+	"min_temperature"	INTEGER,
+	"average_temperature"	INTEGER,
+	"max_temperature"	INTEGER,
+	PRIMARY KEY("date"));
+
+create table "Datum" (
+    "date" TEXT,
+    "day_of_year" TEXT,
+    "day_of_week" TEXT,
+    "month_of_year" TEXT 
+    PRIMARY KEY("date"));
+
+\end{verbatim}
+
+Wir haben die Daten in vier Tabellen aufgeteilt und alle Werte  bis auf die Gruppennummer verarbeitet, die Gruppennummer haben wir entfernt, weil die Daten der anderen Gruppen für unsere Station bedeutungslos sind.
+Falls die Daten der anderen Gruppen beibehalten werden sollen, könnte man einen zusammengesetzen Primary Key bestehend aus group und date nutzen.
+
+In unseren Tabellen haben wir in fünf Teilbereiche unterteilt:
+Die erste Tabelle enthält den Namen der Station und das Datum, der Stationsname bräuchte theoretisch keine eigene Tabelle da er immer derselbe ist aber die Tabelle könnte verwendet werden um die Daten der Gruppe von Daten anderen Gruppen zu unterscheiden da es eine Redundanz der Gruppennummer ist.
+
+Die zweite Tabelle enthält Daten zu den Buchungen und setzt die Anzahl der Buchungen mit dem Primärschlüssel des Datums in Verbindung.
+
+Die dritte Tabelle enthält Wetterdaten zu Windgeschwindigkeit und Niederschlag.
+
+Die vierte Tabelle enthält alle Daten zum Thema Temperatur.
+
+Die letzte Tabelle enthält Informationen bezüglich der Zeit und ordnet jedem Datum einen Wochentag, Monatstag und Monat zu.
 
     
-\end{verbatim}
+
 
 
 \textbf{4. Bereiten Sie Datensatz so vor, dass die Datensätze in
 die passenden Tabellen importiert werden können.} \\
 Um den Datensatz so vorzubereiten, dass die Datensätze in die passenden Tabellen importiert werden können, muss dafür gesorgt werden, dass die Daten in verschiedene Excel-Tabellen gepackt werden damit man diese dann einzeln in die SQL-Tabellen importiert werden können und auch nur die richtigen Daten importiert werden.
-Wir erstellen also je eine Excel-Seite für die verschiedenen Tabellen und entfernen alle Daten welche nicht zur jeweiligen Tabelle gehören.
+Wir erstellen also je eine Excel-Datei für die verschiedenen Tabellen und entfernen alle Daten welche nicht zur jeweiligen Tabelle gehören.
 
 Dafür löschen wir zuerst alle Daten welche nicht zu unserer Gruppe gehören indem wir die Daten der Gruppe 95 markieren, in eine neue Tabelle kopieren und die alte Tabelle löschen.
 Dann kopieren wir die Daten für die jeweilige Tabelle und fügen sie in eine neue Tabelle ein.
 
-\newpage
 Wenn wir die Daten in sql importieren, müssen wir zuerst den Separator umstellen. \\
-Wenn wir uns die Datei anschauen, sehen wir, dass die Daten mit einem ; separiert werden und mit dem Befehl 
+Wenn wir uns die Excel-Dateien anschauen indem wir sie rechtsklicken und auf bearbeiten gehen, sehen wir, dass die Daten mit einem ; separiert werden und mit dem Befehl 
 \begin{verbatim}
 .separator ;  
 \end{verbatim}
-stellen wir den Separator ein.
+stellen wir den Separator so ein, dass er die Daten alle gut erkennen kann.
 Ebenfalls muss dafür gesorgt werden, dass die erste Spalte als Überschrift erkannt wird indem 
 \begin{verbatim}
 .headers on    
@@ -165,18 +199,19 @@ Dann importieren wir die Daten indem wir den Befehl
 \end{verbatim}
  
 nutzen, FILE muss dabei der Dateipfad der csv-Datei und TABLE der Name der Tabelle sein. Den Dateipfad kann man entweder kopieren oder man zieht die Datei in sql rein.
-Wenn wir die Daten importiert haben, können wir alle NA-Werte entfernen.
 
 \textbf{Formulieren Sie eine Abfrage, um aus den Ihrer Gruppe zugeordneten Daten die höchste mittlere Temperatur herauszufiltern} \\
 Zum Schluss können wir dann mit dem Befehl 
 \begin{verbatim}
-selsect max(average_temperature) FROM Temperatur
+selcect max(average_temperature) FROM Temperatur 
+WHERE "average_temperature"!="NA"
 \end{verbatim}
 die maximale mittlere Temperatur unserer Daten ermitteln.
 Die maximale Temperatur sind in diesem Fall 83Fahrenheit bzw. 28,3Grad Celsius. \\ \\
 Es ist auch möglich die maximale Temperatur direkt in Celsius zu erhalten indem man folgenden Befehl eingibt und 28.33333333 als Antwort erhält: 
 \begin{verbatim}
-select max(average_temperature - 32) * 5.0 / 9.0 FROM Temperatur
+select max(average_temperature - 32) * 5.0 / 9.0 FROM Temperatur 
+WHERE "average_temperature"!="NA"
     
 \end{verbatim}
 
