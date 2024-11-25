@@ -14,7 +14,9 @@
 \usepackage{url} % benötigt für URL in Literaturverzeichnis
 
 \title{Abgabe 1 für Computergestützte Methoden}
-\author{Gruppe 95, Fynn Dittmer}
+\author{Gruppe 95, \\ Fynn Dittmer 4348289, \\
+Marlon Bartling, \\
+Mathis Nürnberger}
 \date{01.12.2024}
 
 \begin{document}
@@ -69,6 +71,10 @@ Der ZGS wird in vielen Bereichen der Statistik und der Wahrscheinlichkeitstheori
     \item Die Approximation von Wahrscheinlichkeiten für Summen oder Mittelwerte
 \end{itemize}
 
+\subsection{Github Link}
+Mit folgendem Link kommt man zur Github-Seite mit den für die Erstellung des Dokumentes verwendeten Befehlen: 
+https://github.com/Fynn-Dittmer/COMETAbgabe/tree/main
+
 \newpage
 \section{Bearbeitung zu Aufgabe 1}
 
@@ -122,7 +128,7 @@ Dafür nutzen wir folgende Befehle:
 \begin{verbatim}
     
 
-create table "$Station"(
+create table "Station"(
     "station" TEXT,
     "date" TEXT 
     PRIMARY KEY("date"));
@@ -221,6 +227,9 @@ WHERE "average_temperature"!="NA"
 \bibliography{references}
 
 
+
+
+\end{document}
 
 
 \end{document}
