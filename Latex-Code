@@ -79,16 +79,21 @@ https://github.com/Fynn-Dittmer/COMETAbgabe/tree/main
 \textbf{Untersuchen Sie den für Ihre Gruppe relevanten Teil der Daten und beschreiben Sie ihre Erkenntnisse}\\
 Bei der Untersuchung der Daten fällt einem auf, dass es sich um eine csv-Datei handelt, also um kommaseparierte Daten.
 Außerdem ist auffällig, dass jede Gruppe eine eigene Station zugewiesen bekommen hat.
-Bei dieser Station werden an allen Tagen im Jahre 2023 jeweils einmal täglich verschiedene Daten gemessen welche in der Tabelle enthalten sind.\\
-Die verschiedenen Daten welche ermittelt wurden sind Datum, Tag des Jahres, Tag der Woche, Monat des Jahres, Niederschlag, Windgeschwindigkeit, Mindesttemperatur, Durchschnittstemperatur, Maximaltemperatur und die Anzahl der geliehenen Fahrräder.
-Ebenfalls fällt auf, dass manche Daten fehlen und stattdessen ein NA in der Tabelle steht.
+Bei dieser Station werden an allen Tagen im Jahre 2023 jeweils einmal täglich verschiedene Werte ermittelt, welche in der Tabelle enthalten sind.\\
+Die verschiedenen Werte, welche ermittelt wurden, sind Datum, Tag des Jahres, Tag der Woche, Monat des Jahres, Niederschlag, Windgeschwindigkeit, Mindesttemperatur, Durchschnittstemperatur, Maximaltemperatur und die Anzahl der geliehenen Fahrräder.
+Ebenfalls fällt auf, dass manche Daten fehlen und stattdessen ein $"$NA$"$ in der Tabelle steht.
 
 \textbf{Importieren Sie den Datensatz in eine Tabellenkalulation}\\
-Dafür kann man nachdem die Datei heruntergeladen wurde auf die Datei klicken und sie wird automatisch in der Tabellenkalkulation Excel geladen.
+Um die Daten zu importieren, kann man nach dem Herunterladen der Datei, auf die Datei klicken, und sie wird automatisch in der Tabellenkalkulation Excel geladen.
 
 \textbf{Berechnen Sie für den Ihrer Gruppe zugeordneten Datenteil die höchste mittlere Temperatur in Grad Celsius} \\
 Für die Berechnung der höchsten mittleren Temperatur der Daten der Gruppe 95 sorgt man zuerst dafür, dass die Tabelle übersichtlicher ist.
-Dafür teilt man jedem Datenpunkt seine eigene Spalte zu indem man auf \\ Daten=>Text in Spalten klickt. \\ Zusätzlich wenden wir einen Filter an welcher die Daten aller anderen Gruppen entfernt.
+Dafür teilt man jedem Datenpunkt seine eigene Spalte zu indem man auf 
+
+Daten=>Text in Spalten 
+
+klickt. 
+Zusätzlich wenden wir einen Filter an welcher die Daten aller anderen Gruppen entfernt.
 Dafür klicken wir auf group, klicken dann auf Filter um einen Filter zu erzeugen, blenden alle Gruppen aus und dann Gruppe 95 wieder ein.
 Nun haben wir in den Zeilen 34260 bis 34624 die Daten unserer Gruppe und in der J Spalte die Daten zur mittleren Temperatur.
 Mit dem Befehl 
@@ -157,10 +162,10 @@ create table "Datum" (
 
 \end{verbatim}
 
-Wir haben die Daten in vier Tabellen aufgeteilt und alle Werte  bis auf die Gruppennummer verarbeitet, die Gruppennummer haben wir entfernt, weil die Daten der anderen Gruppen für unsere Station bedeutungslos sind.
+Wir haben die Daten in fünf Tabellen aufgeteilt und alle Werte  bis auf die Gruppennummer verarbeitet, die Gruppennummer haben wir entfernt, weil die Daten der anderen Gruppen für unsere Station bedeutungslos sind.
 Falls die Daten der anderen Gruppen beibehalten werden sollen, könnte man einen zusammengesetzen Primary Key bestehend aus group und date nutzen.
 
-In unseren Tabellen haben wir in fünf Teilbereiche unterteilt:
+Die Daten wurden in folgende fünf Tabellen unterteilt:
 Die erste Tabelle enthält den Namen der Station und das Datum, der Stationsname bräuchte theoretisch keine eigene Tabelle da er immer derselbe ist aber die Tabelle könnte verwendet werden um die Daten der Gruppe von Daten anderen Gruppen zu unterscheiden da es eine Redundanz der Gruppennummer ist.
 
 Die zweite Tabelle enthält Daten zu den Buchungen und setzt die Anzahl der Buchungen mit dem Primärschlüssel des Datums in Verbindung.
@@ -181,7 +186,7 @@ Um den Datensatz so vorzubereiten, dass die Datensätze in die passenden Tabelle
 Wir erstellen also je eine Excel-Datei für die verschiedenen Tabellen und entfernen alle Daten welche nicht zur jeweiligen Tabelle gehören.
 
 Dafür löschen wir zuerst alle Daten welche nicht zu unserer Gruppe gehören indem wir die Daten der Gruppe 95 markieren, in eine neue Tabelle kopieren und die alte Tabelle löschen.
-Dann kopieren wir die Daten für die jeweilige Tabelle und fügen sie in eine neue Tabelle ein.
+Dann kopieren wir die Daten für die jeweilige Tabelle und fügen sie in eine neue Tabelle ein, sodass am Ende nur noch die gewollten Attribute enthalten sind.
 
 Wenn wir die Daten in sql importieren, müssen wir zuerst den Separator umstellen. \\
 Wenn wir uns die Excel-Dateien anschauen indem wir sie rechtsklicken und auf bearbeiten gehen, sehen wir, dass die Daten mit einem ; separiert werden und mit dem Befehl 
@@ -225,5 +230,4 @@ WHERE "average_temperature"!="NA"
 
 
 
-\end{document}
 \end{document}
