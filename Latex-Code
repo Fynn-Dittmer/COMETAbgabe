@@ -70,6 +70,7 @@ Der ZGS wird in vielen Bereichen der Statistik und der Wahrscheinlichkeitstheori
 
 \subsection{Github Link}
 Mit folgendem Link kommt man zur Github-Seite mit den für die Erstellung des Dokumentes verwendeten Befehlen: 
+
 https://github.com/Fynn-Dittmer/COMETAbgabe/tree/main
 
 
@@ -104,6 +105,12 @@ Mit dem Befehl
 können wir nun den gesuchten Wert ermitteln.
 Bei dem ermittelten Wert handelt es sich um 83, dabei handelt es sich jedoch wahrscheinlich um Fahrenheit, sodass der Wert umgewandelt werden muss.
 Die höchste mittlere Temperatur ist somit bei 28,3 Grad Celsius.
+
+Alternativ kann man den gesuchten Wert mit der Formel
+\begin{verbatim}
+=((MAX(J34260:J34624)-32)*5/9)
+\end{verbatim}
+direkt berechnen und 28.3333333 erhalten.
 
 \newpage
 
