@@ -15,8 +15,8 @@
 
 \title{Abgabe 1 für Computergestützte Methoden}
 \author{Gruppe 95, \\ Fynn Dittmer 4348289, \\
-Marlon Bartling 4099139,  \\
-Mathis Nürnberger}
+Marlon Bartling 4099139 ,  \\
+Mathis Nürnberger 2614029}
 \date{01.12.2024}
 
 \begin{document}
@@ -33,15 +33,12 @@ Mathis Nürnberger}
 
 \section {Der zentrale Grenzwertsatz}
 
-Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch
-verteilter $(i.i.d.)$ Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV annähernd
-normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nutzlich, da die Normalverteilung gut untersucht und mathematisch 
-handhabbar ist.
+Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch verteilter $(i.i.d.)$ Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV annähernd normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nutzlich, da die Normalverteilung gut untersucht und mathematisch handhabbar ist.
 
 \subsection{Aussage}
 
 % Textformatierung
-Sei $X1, X2, . . . , Xn$ eine Folge von $i.i.d.$ ZV mit dem Erwartungswert $\mu$ = $\mathbb{E}[Xi]$ und der Varianz $\sigma^2$ = Var$(Xi)$, wobei 0 < $\sigma^2$ < $\infty$ gelte. 
+Sei $X_1, X_2, . . . , X_n$ eine Folge von $i.i.d.$ ZV mit dem Erwartungswert $\mu$ = $\mathbb{E}(X_i)$ und der Varianz $\sigma^2$ $=$ Var$(X_i)$, wobei 0 < $\sigma^2$ < $\infty$ gelte. 
 Dann konvergiert die standardisierte Summe $Z_n$ dieser ZV fur  $n$ → $\infty$ in Verteilung gegen eine Standardnormalverteilung:\footnote{Der zentrale Grenzwertsatz hat verschiedene Verallgemeinerungen. Eine davon ist der \textbf{Lindeberg-Feller-Zentrale-Grenzwertsatz} [\cite{Klenke}, Seite 328], der schwächere Bedingungen an
 die Unabhängigkeit und die identische Verteilung der ZV stellt.}
 
@@ -75,7 +72,7 @@ Der ZGS wird in vielen Bereichen der Statistik und der Wahrscheinlichkeitstheori
 Mit folgendem Link kommt man zur Github-Seite mit den für die Erstellung des Dokumentes verwendeten Befehlen: 
 https://github.com/Fynn-Dittmer/COMETAbgabe/tree/main
 
-\newpage
+
 \section{Bearbeitung zu Aufgabe 1}
 
 \subsection{Thema Datenverarbeitung}
@@ -89,7 +86,7 @@ Ebenfalls fällt auf, dass manche Daten fehlen und stattdessen ein NA in der Tab
 \textbf{Importieren Sie den Datensatz in eine Tabellenkalulation}\\
 Dafür kann man nachdem die Datei heruntergeladen wurde auf die Datei klicken und sie wird automatisch in der Tabellenkalkulation Excel geladen.
 
-\textbf{Berechnen Sie für den Ihrer Gruppe zugeordneten Datenteil die höchset mittlere Temperatur in Grad Celsius} \\
+\textbf{Berechnen Sie für den Ihrer Gruppe zugeordneten Datenteil die höchste mittlere Temperatur in Grad Celsius} \\
 Für die Berechnung der höchsten mittleren Temperatur der Daten der Gruppe 95 sorgt man zuerst dafür, dass die Tabelle übersichtlicher ist.
 Dafür teilt man jedem Datenpunkt seine eigene Spalte zu indem man auf \\ Daten=>Text in Spalten klickt. \\ Zusätzlich wenden wir einen Filter an welcher die Daten aller anderen Gruppen entfernt.
 Dafür klicken wir auf group, klicken dann auf Filter um einen Filter zu erzeugen, blenden alle Gruppen aus und dann Gruppe 95 wieder ein.
@@ -138,13 +135,11 @@ create table "Buchungen"(
     "count" INTEGER 
     PRIMARY KEY("date"));
 
-
 create table "Wetter" (
     "date" TEXT, 
     "precipitation" NUMERIC, 
     "windspeed" NUMERIC
     PRIMARY KEY("date"));
-
 
 create table "Temperatur" (
 	"date"	TEXT,
@@ -230,6 +225,5 @@ WHERE "average_temperature"!="NA"
 
 
 \end{document}
-
 
 \end{document}
