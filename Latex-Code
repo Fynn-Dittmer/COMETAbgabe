@@ -33,7 +33,7 @@ Mathis Nürnberger 2614029}
 
 \section {Der zentrale Grenzwertsatz}
 
-Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch verteilter $(i.i.d.)$ Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV annähernd normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nutzlich, da die Normalverteilung gut untersucht und mathematisch handhabbar ist.
+Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch verteilter $(i.i.d.)$ Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV \mbox{annähernd} normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nutzlich, da die Normalverteilung gut untersucht und mathematisch handhabbar ist.
 
 \subsection{Aussage}
 
@@ -77,7 +77,7 @@ https://github.com/Fynn-Dittmer/COMETAbgabe/tree/main
 
 \subsection{Thema Datenverarbeitung}
 \textbf{Untersuchen Sie den für Ihre Gruppe relevanten Teil der Daten und beschreiben Sie ihre Erkenntnisse}\\
-Bei der Untersuchung der Daten fällt einem auf,dass es sich um eine csv-Datei handelt, also um Kommaseparierte Daten.
+Bei der Untersuchung der Daten fällt einem auf, dass es sich um eine csv-Datei handelt, also um kommaseparierte Daten.
 Außerdem ist auffällig, dass jede Gruppe eine eigene Station zugewiesen bekommen hat.
 Bei dieser Station werden an allen Tagen im Jahre 2023 jeweils einmal täglich verschiedene Daten gemessen welche in der Tabelle enthalten sind.\\
 Die verschiedenen Daten welche ermittelt wurden sind Datum, Tag des Jahres, Tag der Woche, Monat des Jahres, Niederschlag, Windgeschwindigkeit, Mindesttemperatur, Durchschnittstemperatur, Maximaltemperatur und die Anzahl der geliehenen Fahrräder.
@@ -207,6 +207,7 @@ Zum Schluss können wir dann mit dem Befehl
 selcect max(average_temperature) FROM Temperatur 
 WHERE "average_temperature"!="NA"
 \end{verbatim}
+
 die maximale mittlere Temperatur unserer Daten ermitteln.
 Die maximale Temperatur sind in diesem Fall 83Fahrenheit bzw. 28,3Grad Celsius. \\ \\
 Es ist auch möglich die maximale Temperatur direkt in Celsius zu erhalten indem man folgenden Befehl eingibt und 28.33333333 als Antwort erhält: 
@@ -225,5 +226,4 @@ WHERE "average_temperature"!="NA"
 
 
 \end{document}
-
 \end{document}
