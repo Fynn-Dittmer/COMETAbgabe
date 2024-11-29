@@ -112,7 +112,6 @@ Alternativ kann man den gesuchten Wert mit der Formel
 \end{verbatim}
 direkt berechnen und 28.3333333 erhalten.
 
-\newpage
 
 \subsection{Thema Datenhaltung}
 \textbf{2. Entwerfen Sie im Abgabe-Dokument ein Datenbank-Schema} \\
@@ -152,6 +151,13 @@ create table "Wetter" (
     "precipitation" NUMERIC, 
     "windspeed" NUMERIC
     PRIMARY KEY("date"));
+
+
+\end{verbatim}
+
+\newpage
+
+\begin{verbatim}
 
 create table "Temperatur" (
 	"date"	TEXT,
