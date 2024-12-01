@@ -33,13 +33,13 @@ Mathis Nürnberger 2614029}
 
 \section {Der zentrale Grenzwertsatz}
 
-Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch verteilter $(i.i.d.)$ Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV \mbox{annähernd} normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nutzlich, da die Normalverteilung gut untersucht und mathematisch handhabbar ist.
+Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch verteilter $(i.i.d.)$ Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV \mbox{annähernd} normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nützlich, da die Normalverteilung gut untersucht und mathematisch handhabbar ist.
 
 \subsection{Aussage}
 
 % Textformatierung
 Sei $X_1, X_2, . . . , X_n$ eine Folge von $i.i.d.$ ZV mit dem Erwartungswert $\mu$ = $\mathbb{E}(X_i)$ und der Varianz $\sigma^2$ $=$ Var$(X_i)$, wobei 0 < $\sigma^2$ < $\infty$ gelte. 
-Dann konvergiert die standardisierte Summe $Z_n$ dieser ZV fur  $n$ → $\infty$ in Verteilung gegen eine Standardnormalverteilung:\footnote{Der zentrale Grenzwertsatz hat verschiedene Verallgemeinerungen. Eine davon ist der \textbf{Lindeberg-Feller-Zentrale-Grenzwertsatz} [\cite{Klenke}, Seite 328], der schwächere Bedingungen an
+Dann konvergiert die standardisierte Summe $Z_n$ dieser ZV für  $n$ → $\infty$ in Verteilung gegen eine Standardnormalverteilung:\footnote{Der zentrale Grenzwertsatz hat verschiedene Verallgemeinerungen. Eine davon ist der \textbf{Lindeberg-Feller-Zentrale-Grenzwertsatz} [\cite{Klenke}, Seite 328], der schwächere Bedingungen an
 die Unabhängigkeit und die identische Verteilung der ZV stellt.}
 
 
@@ -121,11 +121,10 @@ Für die zweite Normalform müssen alle Nichtschlüssel-Attribute alleine vom Pr
 Unser Datenbank-Schema könnte dann wiefolgt aussehen:
 \begin{itemize}
 
-\item Station(\underline{station}, \underline{date})
 \item Buchungen(\underline{date},count)
 \item Wetter(\underline{date}, precipitation, windspeed)
 \item Temperatur(\underline{date}, min\_temperature, average\_temperature, max\_temperature) 
-\item Datum(\underline{date}, day\_of\_year, day\_of\_week, month\_of\_year ) 
+
 \end{itemize}
 
 
@@ -135,12 +134,6 @@ Dafür nutzen wir folgende Befehle:
 
 \begin{verbatim}
     
-
-create table "Station"(
-    "station" TEXT,
-    "date" TEXT 
-    PRIMARY KEY("date"));
-
 create table "Buchungen"(
     "date" TEXT, 
     "count" INTEGER 
@@ -152,13 +145,6 @@ create table "Wetter" (
     "windspeed" NUMERIC
     PRIMARY KEY("date"));
 
-
-\end{verbatim}
-
-\newpage
-
-\begin{verbatim}
-
 create table "Temperatur" (
 	"date"	TEXT,
 	"min_temperature"	INTEGER,
@@ -166,31 +152,21 @@ create table "Temperatur" (
 	"max_temperature"	INTEGER,
 	PRIMARY KEY("date"));
 
-create table "Datum" (
-    "date" TEXT,
-    "day_of_year" TEXT,
-    "day_of_week" TEXT,
-    "month_of_year" TEXT 
-    PRIMARY KEY("date"));
-
 \end{verbatim}
 
-Wir haben die Daten in fünf Tabellen aufgeteilt und alle Werte  bis auf die Gruppennummer verarbeitet, die Gruppennummer haben wir entfernt, weil die Daten der anderen Gruppen für unsere Station bedeutungslos sind.
+Wir haben die Daten in drei Tabellen aufgeteilt und alle Werte  bis auf die Gruppennummer, den Stationsnamen und die redundanten Zeitangaben verarbeitet, die Gruppennummer haben wir entfernt, weil die Daten der anderen Gruppen für unsere Station bedeutungslos sind.
+Die Station und die entfernten Zeitangaben sind redundant, weil die Informationen bereits im Attribut des Datums erhalten sind.
 Falls die Daten der anderen Gruppen beibehalten werden sollen, könnte man einen zusammengesetzen Primary Key bestehend aus group und date nutzen.
 
-Die Daten wurden in folgende fünf Tabellen unterteilt:
-Die erste Tabelle enthält den Namen der Station und das Datum, der Stationsname bräuchte theoretisch keine eigene Tabelle da er immer derselbe ist aber die Tabelle könnte verwendet werden um die Daten der Gruppe von Daten anderen Gruppen zu unterscheiden da es eine Redundanz der Gruppennummer ist.
 
-Die zweite Tabelle enthält Daten zu den Buchungen und setzt die Anzahl der Buchungen mit dem Primärschlüssel des Datums in Verbindung.
+Die Daten wurden in folgende drei Tabellen unterteilt:
 
-Die dritte Tabelle enthält Wetterdaten zu Windgeschwindigkeit und Niederschlag.
 
-Die vierte Tabelle enthält alle Daten zum Thema Temperatur.
+Die erste Tabelle enthält Daten zu den Buchungen und setzt die Anzahl der Buchungen mit dem Primärschlüssel des Datums in Verbindung.
 
-Die letzte Tabelle enthält Informationen bezüglich der Zeit und ordnet jedem Datum einen Wochentag, Monatstag und Monat zu.
+Die zweite Tabelle enthält Wetterdaten zu Windgeschwindigkeit und Niederschlag.
 
-    
-
+Die dritte Tabelle enthält alle Daten zum Thema Temperatur.
 
 
 \textbf{4. Bereiten Sie Datensatz so vor, dass die Datensätze in
@@ -222,7 +198,7 @@ nutzen, FILE muss dabei der Dateipfad der csv-Datei und TABLE der Name der Tabel
 \textbf{Formulieren Sie eine Abfrage, um aus den Ihrer Gruppe zugeordneten Daten die höchste mittlere Temperatur herauszufiltern} \\
 Zum Schluss können wir dann mit dem Befehl 
 \begin{verbatim}
-selcect max(average_temperature) FROM Temperatur 
+select max(average_temperature) FROM Temperatur 
 WHERE "average_temperature"!="NA"
 \end{verbatim}
 
